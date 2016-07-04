@@ -36,8 +36,7 @@ public class HelloWebService extends Application {
 			@FormParam("endereco") String endereco,
 			@FormParam("informacaoContato") String informacaoContato, 
 			@FormParam("latitude") Integer latitude,
-			@FormParam("longitude") Integer longitude, 
-			@FormParam("imagens") Integer imagens) {
+			@FormParam("longitude") Integer longitude) {
 
 		EntidadeMausTratos mausTratos = new EntidadeMausTratos();
 

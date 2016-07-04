@@ -1,8 +1,10 @@
 package dao;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 public class DAOGenerico {
@@ -18,6 +20,30 @@ public class DAOGenerico {
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
+		}
+	}
+
+	public void exluir(Object objeto) throws Exception {
+		EntityTransaction et = null;
+		try {
+			entityManager = Banco.getConexao().getEm();
+			et = entityManager.getTransaction();
+			if (!et.isActive()) {
+				et.begin();
+			}
+			Method getChave = objeto.getClass().getMethod("getId", new Class[0]);
+			objeto = entityManager.find(objeto.getClass(), getChave.invoke(objeto, new Object[0]));
+			entityManager.remove(objeto);
+
+			et.commit();
+		} catch (Exception e) {
+
+			if (!entityManager.getTransaction().isActive()) {
+				entityManager.getTransaction().begin();
+			}
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
 		}
 	}
 

@@ -1,6 +1,5 @@
 package modelo;
 
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,7 @@ public class EntidadeMausTratos {
 	private Integer longitude;
 	private String descricaoAnimal;
 	private String InformacaoContato;
-	private List<Integer> imagens;
+	
 	
 	public Long getId() {
 		return id;
@@ -63,11 +62,5 @@ public class EntidadeMausTratos {
 	}
 	public void setInformacaoContato(String informacaoContato) {
 		InformacaoContato = informacaoContato;
-	}
-	public List<Integer> getImagens() {
-		return imagens;
-	}
-	public void setImagens(List<Integer> imagens) {
-		this.imagens = imagens;
 	}
 }
